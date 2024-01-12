@@ -3,7 +3,7 @@ env*
 images*
 *.pt 
 runs/
-
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
