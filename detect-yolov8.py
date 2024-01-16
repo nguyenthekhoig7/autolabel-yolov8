@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 import torch
 from ultralytics.utils.plotting import Annotator, colors
-
+names = ['zebra', 'crocodile']
 
 def make_image_wbbox(image, preds, hide_conf=False, hide_labels=False):
     print("\nCombining Image and Labels...")
@@ -20,12 +20,12 @@ def make_image_wbbox(image, preds, hide_conf=False, hide_labels=False):
 
         annotator = Annotator(im0, line_width=line_thickness)
         label=None
-        # label = (
-        #     None
-        #     if hide_labels
-        #     else (var.names[c] if hide_conf else f"{var.names[c]} {conf:.2f}")
-        # )
-        print(' xyxy,  conf, cls:', xyxy, conf, c )
+        label = (
+            None
+            if hide_labels
+            else (names[c] if hide_conf else f"{names[c]} {conf:.2f}")
+        )
+        # print(' xyxy,  conf, cls:', xyxy, conf, c )
         annotator.box_label(xyxy, label, color=colors(c, True))
 
     img_with_bboxes = annotator.result()
